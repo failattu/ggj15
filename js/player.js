@@ -19,6 +19,6 @@ function fire(player,cannon) {
 	    // console.log("bullet fired.");
 	    player.fireCooldown = 20;
 	    player.resources -= 1;
-    	return bullet;
+			return bullet;
 	}
 }
