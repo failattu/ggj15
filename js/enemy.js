@@ -1,4 +1,4 @@
-function addEnemy(ground) {
+function addEnemy(ground,p1,p2) {
 	var enemy = new Sprite(16, 16);
 	enemy.x = rand(320);
 	enemy.y = 0;
@@ -6,7 +6,13 @@ function addEnemy(ground) {
 
 	enemy.addEventListener('enterframe', function(e) {
 	    if(this.intersect(ground)) {
-	    	console.log("intersect!");
+				if(this.x < 150){
+					p1.hp -= 1
+					console.log("hp -1  " + p1.hp)
+				}else{
+					p2.hp -= 1
+					console.log("hp -1 " + p2.hp)
+				}
 				this.removeEventListener('enterframe');
 	    	game.currentScene.removeChild(this);
 	    }

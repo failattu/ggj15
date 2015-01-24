@@ -1,5 +1,4 @@
 var bullets = [];
-
 function initWorld() {
 	var gameScene = new Scene();
 	game.pushScene(gameScene);
@@ -62,7 +61,7 @@ function initWorld() {
 		}
 		p2.fireCooldown -=1;
 		if(game.frame % 120 == 0) {
-			addEnemy(ground);
+			addEnemy(ground,p1,p2);
 		}
 	});
 
