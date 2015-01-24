@@ -1,15 +1,16 @@
 function addEnemy(ground,p1,p2) {
 	var enemy = new Sprite(16, 16);
-	enemy.x = rand(320);
+	enemy.x = rand(game_x);
 	enemy.y = 0;
 	enemy.image = game.assets['assets/bullet.png'];
 
 	enemy.addEventListener('enterframe', function(e) {
 	    if(this.intersect(ground)) {
-				if(this.x < 150){
+				if(this.x < game_x) {
 					p1.hp -= 1
 					console.log("hp -1  " + p1.hp)
-				}else{
+				}
+				else {
 					p2.hp -= 1
 					console.log("hp -1 " + p2.hp)
 				}
@@ -27,7 +28,7 @@ function addEnemy(ground,p1,p2) {
 		    	bullets.splice(i, 1);
 	   		}
         }
-    	this.y += 1;
+    	this.y += 3;
 	});
 	game.currentScene.addChild(enemy);
 }
