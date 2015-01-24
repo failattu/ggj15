@@ -1,5 +1,5 @@
 enchant();
- 
+
 window.onload = function() {
 	var game = new Game(320, 320);
 	game.fps = 60;
@@ -7,30 +7,6 @@ window.onload = function() {
 	game.onload = function () {
 
 		initWorld();
-
-		// var scene = new Scene();
-		// game.pushScene(scene);
-		
-		// var bear = new Sprite(32, 32);
-		// bear.image = game.assets['assets/chara1.png'];
-
-  //       bear.x = 0;
-  //       bear.y = 0;
-
-  //       bear.baseFrame = 5;
-  //       bear.frame = bear.baseFrame;
-
-		// scene.addChild(bear);
-
-  //       bear.addEventListener("enterframe", function(){
-  //           this.x += 1;
-  //           this.frame = this.age % 2 + this.baseFrame;
-  //       });
-
-  //       bear.addEventListener("touchstart", function(){
-  //           // scene.removeChild(bear);
-  //           this.baseFrame += 1;
-  //       });
 
 	};
 
@@ -62,7 +38,7 @@ window.onload = function() {
 				this.rotation += 1.5;
 			}
 	    });
-		
+
 		var ground = new Sprite(320, 32);
 		ground.image = game.assets['assets/ground.png'];
 
