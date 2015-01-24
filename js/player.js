@@ -1,6 +1,6 @@
 function Player() {
 	this.fireCooldown = 0;
-	this.resources = 10;
+	this.resources = 30;
 	this.hp = 1;
 }
 
