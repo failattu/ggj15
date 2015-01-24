@@ -1,6 +1,6 @@
 function addEnemy(ground) {
 	var enemy = new Sprite(16, 16);
-	enemy.x = 100;
+	enemy.x = rand(320);
 	enemy.y = 0;
 	enemy.image = game.assets['assets/bullet.png'];
 
@@ -12,11 +12,12 @@ function addEnemy(ground) {
 	    for (i = bullets.length - 1; i >= 0; i--) {
         	currentBullet = bullets[i];
 	    	if(this.intersect(currentBullet)) {
-		    	console.log("intersect bullet!");
-		    	currentBullet.clearEventListener("enterframe");
+		    	console.log("intersect with bullet!");
+		    	currentBullet.removeEventListener("enterframe");
 		    	game.currentScene.removeChild(currentBullet);
-		    	this.clearEventListener("enterframe");
+		    	this.removeEventListener("enterframe");
 		    	game.currentScene.removeChild(this);
+		    	bullets.splice(i, 1);
 	   		}
         }
     	this.y += 1; 

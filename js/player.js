@@ -24,6 +24,5 @@ function fire(player,cannon) {
 	    if (bullets.length > 6) {
 	    	bullets.shift();
 	    }
-	    console.log(bullets);
 	}
 }
