@@ -6,13 +6,11 @@ function addEnemy(ground,p1,p2) {
 
 	enemy.addEventListener('enterframe', function(e) {
 	    if(this.intersect(ground)) {
-				if(this.x < game_x) {
-					p1.hp -= 1
-					console.log("hp -1  " + p1.hp)
+				if(this.x < (game_x * 0.5)) {
+					p1.resources -= 3
 				}
 				else {
-					p2.hp -= 1
-					console.log("hp -1 " + p2.hp)
+					p2.resources -= 3
 				}
 				this.removeEventListener('enterframe');
 	    	game.currentScene.removeChild(this);

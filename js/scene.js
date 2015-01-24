@@ -4,7 +4,7 @@ function initWorld() {
 	game.pushScene(gameScene);
 	var p1 = new Player();
 	var p2 = new Player();
-  	var p1_cannon = new Sprite(cannon_x,cannon_y);
+  var p1_cannon = new Sprite(cannon_x,cannon_y);
 	var p2_cannon = new Sprite(cannon_x,cannon_y);
 	p1_cannon.image = game.assets['assets/cannon.png'];
 	p2_cannon.image = game.assets['assets/cannon.png'];
@@ -19,7 +19,7 @@ function initWorld() {
 	gameScene.addChild(p1_cannon);
 	gameScene.addChild(p2_cannon);
   	p1_cannon.addEventListener("enterframe", function(){
-    	if(p1.hp > 0){
+    	if(p1.resources > 0){
 			if (game.input.left && !game.input.right) {
 				if (this.x >= 0) this.x -= 3;
 			}
@@ -33,7 +33,7 @@ function initWorld() {
   	});
 
 	p2_cannon.addEventListener("enterframe", function(){
-	if(p2.hp > 0)
+	if(p2.resources > 0)
 	{
 		if (game.input.lefta && !game.input.rightd) {
 			if (this.x >= game_x * 0.5) this.x -= 3;
@@ -73,7 +73,7 @@ function initWorld() {
 	label2.y = p1locatioy;
 	label2.x = p1locatiox;
 	label2.addEventListener('enterframe', function(){
-		this.text = "Player 1 HP " + p1.hp + "\n Player 1 Ammo " + p1.resources;
+		this.text = "Player 1 Resources " + p1.resources;
 	});
 	gameScene.addChild(label2);
 	var label2 = new Label();
@@ -84,7 +84,7 @@ function initWorld() {
 	label2.y = p2locatioy;
 	label2.x = p2locatiox;
 	label2.addEventListener('enterframe', function(){
-		this.text = "Player 2 HP " + p2.hp + "\n Player 2 Ammo " + p2.resources;
+		this.text = "Player 2 Resources " + p2.resources;
 	});
 	gameScene.addChild(label2);
 }
