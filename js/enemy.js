@@ -69,13 +69,13 @@ function addSmallEnemy (ground, p1, p2) {
 
 	enemy.addEventListener('enterframe', function(e) {
 	    if(this.intersect(ground)) {
-				if(this.x < game_x) {
-					p1.hp -= 1
-					console.log("hp -1  " + p1.hp)
+				if(this.x < (game_x * 0.5)) {
+					p1.resources -= 3
+					game.assets['assets/collideground.wav'].play();
 				}
 				else {
-					p2.hp -= 1
-					console.log("hp -1 " + p2.hp)
+					p2.resources -= 3
+					game.assets['assets/collideground.wav'].play();
 				}
 				this.removeEventListener('enterframe');
 	    	game.currentScene.removeChild(this);
@@ -84,6 +84,7 @@ function addSmallEnemy (ground, p1, p2) {
         	currentBullet = bullets[i];
 	    	if(this.intersect(currentBullet)) {
 		    	console.log("intersect with bullet!");
+				game.assets['assets/hitenemy.wav'].play();
 		    	currentBullet.removeEventListener("enterframe");
 		    	game.currentScene.removeChild(currentBullet);
 		    	this.removeEventListener("enterframe");
