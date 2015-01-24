@@ -28,10 +28,10 @@ function initWorld() {
 	gameScene.addChild(p2_cannon);
   	p1_cannon.addEventListener("enterframe", function(){
     	if(p1.resources > 0){
-			if (game.input.left && !game.input.right) {
+			if (game.input.lefta && !game.input.rightd) {
 				if (this.x >= 0) this.x -= 5;
 			}
-    		if (game.input.right && !game.input.left) {
+    		if (game.input.rightd && !game.input.lefta) {
 				if(this.x <= game_x * 0.5 - cannon_x) this.x += 5;
 			}
 		}
@@ -56,10 +56,10 @@ function initWorld() {
 	p2_cannon.addEventListener("enterframe", function(){
 	if(p2.resources > 0)
 	{
-		if (game.input.lefta && !game.input.rightd) {
+		if (game.input.left && !game.input.right) {
 			if (this.x >= game_x * 0.5) this.x -= 5;
 		}
-		if (game.input.rightd && !game.input.lefta) {
+		if (game.input.right && !game.input.left) {
 			if(this.x <= game_x - cannon_x)this.x += 5;
 		}
 	}
@@ -87,11 +87,11 @@ function initWorld() {
 	ground.y = game_y - ground_y;
 	gameScene.addChild(ground);
 	gameScene.addEventListener("enterframe", function() {
-		if (game.input.up) {
+		if (game.input.upw) {
 			fire(p1, p1_cannon);
 		}
 		p1.fireCooldown -= 1;
-		if(game.input.upw){
+		if(game.input.up){
 			fire(p2, p2_cannon);
 		}
 		p2.fireCooldown -=1;
