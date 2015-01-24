@@ -66,8 +66,8 @@ function addUfo (ground, p1, p2) {
 
 function addSmallEnemy (ground, p1, p2) {
 	var enemy = new Sprite(16, 16);
-	// enemy.x = rand(game_x - game_x * 0.1) + game_x * 0.05;
-	enemy.x = 200;
+	enemy.x = rand(game_x - game_x * 0.1) + game_x * 0.05;
+	// enemy.x = 200;
 	enemy.y = 0;
 	enemy.image = game.assets['assets/bullet.png'];
 
