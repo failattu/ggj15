@@ -4,6 +4,7 @@ function initWorld() {
 	game.pushScene(gameScene);
 	var p1 = new Player();
 	var p2 = new Player();
+	var firstrun = false;
   var p1_cannon = new Sprite(cannon_x,cannon_y);
 	var p2_cannon = new Sprite(cannon_x,cannon_y);
 	p1_cannon.image = game.assets['assets/cannon.png'];
@@ -30,17 +31,18 @@ function initWorld() {
 		else {
 			console.log("p1 has died");
 			var label2 = new Label();
-			label2.width = p2textwidthW;
-			label2.height = p2textheightW;
+			label2.width = p2textwidthw;
+			label2.height = p2textheightw;
 			label2.font = "24px 'Arial'";
 			label2.color = 'rgb(0, 0, 0)';
-			label2.y = p2locatioyW;
-			label2.x = p2locatioxW;
+			label2.y = p2locatioyw;
+			label2.x = p2locatioxw;
 			label2.addEventListener('enterframe', function(){
 				this.text = "Player 2 has won the game";
 			});
 			gameScene.addChild(label2);
-			game.stop();
+			if(firstrun== true) game.stop();
+			firstrun =true;
 		}
   	});
 
@@ -66,7 +68,9 @@ function initWorld() {
 			this.text = "Player 1 has won the game ";
 		});
 		gameScene.addChild(label2);
-		game.stop();
+
+		if(firstrun== true) game.stop();
+		firstrun =true;
 		}
 	});
 	var ground = new Sprite(game_x, ground_y);
