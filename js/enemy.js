@@ -2,7 +2,7 @@ function addEnemy(ground,p1,p2) {
 	if (ufoActive) {
 
 	}
-	else if (game.currentScene.age % 360 == 0) {
+	else if (game.currentScene.age % 3600 == 0) {
 		addUfo(ground, p1, p2);
 		ufoActive = true;
 	}
@@ -41,6 +41,7 @@ function addUfo (ground, p1, p2) {
 		    	if (this.hp <= 0) {
 			    	this.removeEventListener("enterframe");
 			    	game.currentScene.removeChild(this);
+			    	ufoActive = false;
 			    }
 			    else {
 			    	this.hp -= 1;
