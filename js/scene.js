@@ -19,21 +19,27 @@ function initWorld() {
 		gameScene.addChild(p1_cannon);
 		gameScene.addChild(p2_cannon);
     p1_cannon.addEventListener("enterframe", function(){
-        if (game.input.left && !game.input.right) {
+      if(p1.hp > 0){
+			if (game.input.left && !game.input.right) {
 			if (this.x != -50) this.x -= 1;
 		}
         if (game.input.right && !game.input.left) {
 			if(this.x < 274)this.x += 1;
-		}
+		}}
+		else{console.log("p1 has died"); game.stop();}
     });
 
 		p2_cannon.addEventListener("enterframe", function(){
-				if (game.input.lefta && !game.input.rightd) {
+			if(p2.hp > 0)
+				{
+			if (game.input.lefta && !game.input.rightd) {
 			if (this.x != -50) this.x -= 1;
 		}
 				if (game.input.rightd && !game.input.lefta) {
 			if(this.x < 274)this.x += 1;
 		}
+		}
+		else{console.log("p2 has died");game.stop();}
 		});
 	var ground = new Sprite(320, 32);
 	ground.image = game.assets['assets/ground.png'];
@@ -95,7 +101,17 @@ function initWorld() {
 
 			enemy.addEventListener('enterframe', function(e) {
 					if(this.intersect(ground)) {
-						console.log("intersect!");
+						//console.log("intersect!");
+						//console.log(this.x)
+						if (this.x > 100){
+							p2.hp = p2.hp - 1
+							console.log("user 2 lost")
+						}
+						else
+							{
+								p1.hp = p1.hp - 1
+								console.log("user 1 lost")
+							}
 						this.clearEventListener('enterframe')
 						game.currentScene.removeChild(this);
 					}

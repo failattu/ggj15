@@ -1,6 +1,7 @@
 function Player() {
 	this.fireCooldown = 0;
 	this.resources = 10;
+	this.hp = 1;
 }
 
 function fire(player,cannon,enemies) {
