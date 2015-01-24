@@ -1,4 +1,4 @@
-function addEnemy(ground, bullet) {
+function addEnemy(ground) {
 	var enemy = new Sprite(16, 16);
 	enemy.x = rand(320);
 	enemy.y = 0;
@@ -11,14 +11,12 @@ function addEnemy(ground, bullet) {
 	    	console.log("intersect!");
 	    	game.currentScene.removeChild(this);
 	    }
-			if(this.intersect(bullet)) {
-				console.log("intersect!");
-				game.currentScene.removeChild(this);
-			}
+
 
 	    this.y += 1;
 	});
 	game.currentScene.addChild(enemy);
+	return enemy;
 }
 function rand(num) {
 	return Math.floor(Math.random() * num);
