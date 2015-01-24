@@ -1,3 +1,5 @@
+var bullets = [];
+
 function initWorld() {
 	var gameScene = new Scene();
 	game.pushScene(gameScene);
@@ -50,77 +52,24 @@ function initWorld() {
 	var ground = new Sprite(320, 32);
 	ground.image = game.assets['assets/ground.png'];
 
-  ground.x = 0;
-  ground.y = 298;
-  gameScene.addChild(ground);
-  gameScene.addEventListener("enterframe", function() {
-  if (game.input.up) {
-	  if (p1.fireCooldown <= 0 && p1.resources != 0) {
-			bullet.x = (p1_cannon.x + 50);
-			bullet.y = (p1_cannon.y);
-			bullet.image = game.assets['assets/bullet.png'];
-			bullet.addEventListener('enterframe', function(e) {
-			this.y -= 6;
-			if(this.y < 0){
-				this.clearEventListener('enterframe')
-			 	game.currentScene.removeChild(this)
-			}
-		});
-		game.currentScene.addChild(bullet);
-		p1.fireCooldown = 20;
-		p1.resources -= 1;
+	ground.x = 0;
+	ground.y = 298;
+	gameScene.addChild(ground);
+	gameScene.addEventListener("enterframe", function() {
+		if (game.input.up) {
+			fire(p1, p1_cannon);
 		}
-	}
-	p1.fireCooldown -= 1;
-	if (game.input.upw) {
-		if (p2.fireCooldown <= 0 && p2.resources != 0) {
-			bullet.x = (p2_cannon.x + 50);
-			bullet.y = (p2_cannon.y);
-			bullet.image = game.assets['assets/bullet.png'];
-			bullet.addEventListener('enterframe', function(e) {
-				this.y -= 6;
-				if(this.y < 0){
-					this.clearEventListener('enterframe')
-					game.currentScene.removeChild(this)
-				}
-			});
-			game.currentScene.addChild(bullet);
-			p2.fireCooldown = 20;
-			p2.resources -= 1;
+		p1.fireCooldown -= 1;
+		if(game.input.upw){
+			fire(p2, p2_cannon);
 		}
-	}
-	p2.fireCooldown -= 1;
-	if(game.frame % 220 == 0  || typeof enemy === 'undefined') {
-		enemy.x = rand(320);
-		enemy.y = 0;
-		enemy.image = game.assets['assets/ground.png'];
-		enemy.frame = 60;
-		enemy.addEventListener('enterframe', function(e) {
-		if(this.intersect(ground)) {
-			if (this.x > 100){
-				p2.hp = p2.hp - 1
-				console.log("user 2 lost")
-				}
-				else
-				{
-					p1.hp = p1.hp - 1
-					console.log("user 1 lost")
-				}
-						this.clearEventListener('enterframe')
-						game.currentScene.removeChild(this);
-					}
-					if(this.intersect(bullet)){
-						this.clearEventListener('enterframe')
-						game.currentScene.removeChild(this);
-					}
-					this.y += 1;
-			});
-			game.currentScene.addChild(enemy);
+		p2.fireCooldown -=1;
+		if(game.frame % 120 == 0) {
+			addEnemy(ground);
 		}
 	});
 
 }
-
 function makeBackground(image) {
 	var bg = new Sprite(1024, 768);
 	bg.image = image;
