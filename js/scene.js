@@ -10,7 +10,12 @@ function initWorld() {
     var p2_cannon = new Sprite(100,100);
 		p1_cannon.image = game.assets['assets/cannon.png'];
 		p2_cannon.image = game.assets['assets/cannon.png'];
-
+	console.log("Test, bef bground");
+	var bg = makeBackground(game.assets['assets/bground.png'])
+	console.log("Test, after call bground");
+	gameScene.addChild(bg);
+	console.log("Test, after addChild bground");	
+	
     p1_cannon.x = 30;
     p1_cannon.y = 248;
 		p2_cannon.x = 200;
@@ -109,4 +114,10 @@ function initWorld() {
 		}
 	});
 
+}
+
+function makeBackground(image) {
+	var bg = new Sprite(1024, 768);
+	bg.image = image;
+	return bg;
 }
