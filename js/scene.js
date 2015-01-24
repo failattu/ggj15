@@ -1,6 +1,10 @@
 function rand(num) {
 	return Math.floor(Math.random() * num);
 }
+function destroy (node) {
+	node.removeEventListener('enterframe');
+	game.currentScene.removeChild(node);
+}
 
 var bullets = [];
 var ufoActive = false;

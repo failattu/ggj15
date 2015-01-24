@@ -27,36 +27,37 @@ function addUfo (ground, p1, p2) {
 	    }
 	    if (this.intersect(ground)) {
 	    	// add game over for both here
-			this.removeEventListener('enterframe');
-	    	game.currentScene.removeChild(this);
+	    	ufoActive = false;
+			destroy(this);
 	    }
-	    for (i = bullets.length - 1; i >= 0; i--) {
-        	currentBullet = bullets[i];
-	    	if(this.intersect(currentBullet)) {
-		    	console.log("intersect with bullet!");
-		    	currentBullet.removeEventListener("enterframe");
-		    	game.currentScene.removeChild(currentBullet);
-		    	bullets.splice(i, 1);
+	    else {
+		    for (i = 0; i < bullets.length; i++) {
+	        	currentBullet = bullets[i];
+		    	if(this.intersect(currentBullet)) {
+			    	// console.log("intersect with bullet!");
+			    	game.assets['assets/hitenemy.wav'].play();
+			    	destroyBullet(i);
+			    	// console.log("Removed bullet " + i + " from bullets (collide).");
 
-		    	if (this.hp <= 0) {
-			    	this.removeEventListener("enterframe");
-			    	game.currentScene.removeChild(this);
-			    	ufoActive = false;
-			    	ufoSpawnTime = 60 * (rand(20) + 10);
-			    }
-			    else {
-			    	this.hp -= 1;
-			    	nudgeDirection = rand(2);
-			    	if (nudgeDirection == 1) {
-			    		this.x -= 2;
-			    	}
-			    	else {
-			    		this.x += 2;
-			    	}
-			    	this.y -= 2;
-			    }
-	   		}
-        }
+			    	if (this.hp <= 0) {
+				    	destroy(this);
+				    	ufoActive = false;
+				    	ufoSpawnTime = 60 * (rand(20) + 10);
+				    }
+				    else {
+				    	this.hp -= 1;
+				    	nudgeDirection = rand(2);
+				    	if (nudgeDirection == 1) {
+				    		this.x -= 2;
+				    	}
+				    	else {
+				    		this.x += 2;
+				    	}
+				    	this.y -= 2;
+				    }
+		   		}
+	        }
+	    }
     	this.y += 0.5;
 	});
 
@@ -65,38 +66,37 @@ function addUfo (ground, p1, p2) {
 
 function addSmallEnemy (ground, p1, p2) {
 	var enemy = new Sprite(16, 16);
-	enemy.x = rand(game_x);
+	// enemy.x = rand(game_x - game_x * 0.1) + game_x * 0.05;
+	enemy.x = 200;
 	enemy.y = 0;
 	enemy.image = game.assets['assets/bullet.png'];
 
 	enemy.addEventListener('enterframe', function(e) {
 	    if(this.intersect(ground)) {
-				if(this.x < (game_x * 0.5)) {
-					p1.resources -= 3
-					game.assets['assets/collideground.wav'].play();
-				}
-				else {
-					p2.resources -= 3
-					game.assets['assets/collideground.wav'].play();
-				}
-				this.removeEventListener('enterframe');
-	    	game.currentScene.removeChild(this);
+			if(this.x < (game_x * 0.5)) {
+				p1.resources -= 3
+				game.assets['assets/collideground.wav'].play();
+			}
+			else {
+				p2.resources -= 3
+				game.assets['assets/collideground.wav'].play();
+			}
+			destroy(this);
 	    }
-	    for (i = bullets.length - 1; i >= 0; i--) {
+	    for (i = 0; i < bullets.length; i++) {
         	currentBullet = bullets[i];
 	    	if(this.intersect(currentBullet)) {
-		    	console.log("intersect with bullet!");
+		    	// console.log("intersect with bullet!");
 				game.assets['assets/hitenemy.wav'].play();
-		    	currentBullet.removeEventListener("enterframe");
-		    	game.currentScene.removeChild(currentBullet);
+		    	// console.log("i is " + i + ", currentBullet is " + currentBullet.id);
+		    	destroyBullet(i);
+		    	// console.log("Removed bullet " + i + " from bullets (collide).");
 		    	
 		    	if (rand(10) <= 5) {
 		    		spawnScrap(this.x, this.y, ground, p1, p2);
 		    	}
 
-		    	this.removeEventListener("enterframe");
-		    	game.currentScene.removeChild(this);
-		    	bullets.splice(i, 1);
+		    	destroy(this);
 	   		}
         }
     	this.y += 3;
@@ -113,16 +113,15 @@ function spawnScrap(startX, startY, ground, p1, p2) {
 	scrap.x_direction = rand(6) - 2;
 	scrap.addEventListener('enterframe', function(e) {
 	    if(this.intersect(ground)) {
-				if(this.x < (game_x * 0.5)) {
-					p1.resources += 1
-					game.assets['assets/collideground.wav'].play();
-				}
-				else {
-					p2.resources += 1
-					game.assets['assets/collideground.wav'].play();
-				}
-				this.removeEventListener('enterframe');
-	    	game.currentScene.removeChild(this);
+			if(this.x < (game_x * 0.5)) {
+				p1.resources += 1
+				// game.assets['assets/collideground.wav'].play();
+			}
+			else {
+				p2.resources += 1
+				// game.assets['assets/collideground.wav'].play();
+			}
+			destroy(this);
 	    }
     	this.y += this.age - 8;
     	this.x += this.x_direction;
