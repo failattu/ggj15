@@ -46,30 +46,60 @@ window.onload = function() {
 	    ground.y = 298;
 
 	    gameScene.addChild(ground);
-
+      var bullet;
 	    gameScene.addEventListener("enterframe", function() {
 	        if (game.input.up) {
-				fire(p1, p1_cannon);
+				  bullet = fire(p1, p1_cannon);
 			}
 			p1.fireCooldown -= 1;
 	    });
-	}
+
+    gameScene.addEventListener('enterframe',function(){
+       if(game.frame % 120 == 0){
+
+            addEnemy(ground)
+       }
+   });
+  }
+  function addEnemy(ground){
+    var enemy = new Sprite(16, 16);
+    enemy.x = rand(320);
+    enemy.y = 0;
+    enemy.image = game.assets['assets/ground.png'];
+
+    enemy.frame = 60;
+
+    enemy.addEventListener('enterframe', function(e) {
+          if(this.intersect(ground)){
+          console.log("intersect!")
+          game.currentScene.removeChild(this)
+        }
+          this.y += 1;
+
+    });
+    game.currentScene.addChild(enemy);
+  }
+  function rand(num){
+    return Math.floor(Math.random() * num);
+  }
 
 	function fire(player,cannon) {
 	    if (player.fireCooldown <= 0 && player.resources != 0) {
 		    var bullet = new Sprite(16, 16);
 		    bullet.x = (cannon.x + 50);
 		    bullet.y = (cannon.y);
-        console.log(bullet.x)
+        //console.log(bullet.x)
 		    bullet.image = game.assets['assets/bullet.png'];
-
 		    bullet.addEventListener('enterframe', function(e) {
-		        this.y -= 6;
+	            this.y -= 6;
+              if(this.y < 0) game.currentScene.removeChild(this)
+
 		    });
 		    game.currentScene.addChild(bullet);
 		    // console.log("bullet fired.");
 		    player.fireCooldown = 20;
 		    player.resources -= 1;
+        return bullet;
 		}
 	}
 	game.start();
