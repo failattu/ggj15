@@ -3,11 +3,8 @@ var bullets = [];
 function initWorld() {
 	var gameScene = new Scene();
 	game.pushScene(gameScene);
-	var enemylist = []
 	var p1 = new Player();
 	var p2 = new Player();
-	var enemy = new Sprite(16, 16);
-	var bullet = new Sprite(16, 16);
   var p1_cannon = new Sprite(100,100);
 	var p2_cannon = new Sprite(100,100);
 	p1_cannon.image = game.assets['assets/cannon.png'];
