@@ -4,52 +4,53 @@ function initWorld() {
 	game.pushScene(gameScene);
 	var p1 = new Player();
 	var p2 = new Player();
-  var p1_cannon = new Sprite(100,100);
-	var p2_cannon = new Sprite(100,100);
+  	var p1_cannon = new Sprite(cannon_x,cannon_y);
+	var p2_cannon = new Sprite(cannon_x,cannon_y);
 	p1_cannon.image = game.assets['assets/cannon.png'];
 	p2_cannon.image = game.assets['assets/cannon.png'];
 	var bg = makeBackground(game.assets['assets/bground.png'])
 	gameScene.addChild(bg);
 
-  p1_cannon.x = 30;
-  p1_cannon.y = 248;
-	p2_cannon.x = 200;
-	p2_cannon.y = 248;
+	p1_cannon.x = game_x * 0.25;
+	p1_cannon.y = game_y - ground_y*2;
+	p2_cannon.x = game_x * 0.75;
+	p2_cannon.y = game_y - ground_y*2;
 
 	gameScene.addChild(p1_cannon);
 	gameScene.addChild(p2_cannon);
-  p1_cannon.addEventListener("enterframe", function(){
-  if(p1.hp > 0){
-		if (game.input.left && !game.input.right) {
-			if (this.x != -50) this.x -= 1;
+  	p1_cannon.addEventListener("enterframe", function(){
+    	if(p1.hp > 0){
+			if (game.input.left && !game.input.right) {
+				if (this.x >= 0) this.x -= 3;
+			}
+    		if (game.input.right && !game.input.left) {
+				if(this.x <= game_x * 0.5 - cannon_x) this.x += 3;
+			}
 		}
-    if (game.input.right && !game.input.left) {
-			if(this.x < 274)this.x += 1;
+		else {
+			console.log("p1 has died"); game.stop();
 		}
-	}
-	else{
-		console.log("p1 has died"); game.stop();}
-  });
+  	});
 
 	p2_cannon.addEventListener("enterframe", function(){
 	if(p2.hp > 0)
 	{
 		if (game.input.lefta && !game.input.rightd) {
-			if (this.x != -50) this.x -= 1;
+			if (this.x >= game_x * 0.5) this.x -= 3;
 		}
 		if (game.input.rightd && !game.input.lefta) {
-			if(this.x < 274)this.x += 1;
+			if(this.x <= game_x - cannon_x)this.x += 3;
 		}
 	}
 	else{
 		game.stop();
 		}
 	});
-	var ground = new Sprite(320, 32);
+	var ground = new Sprite(game_x, ground_y);
 	ground.image = game.assets['assets/ground.png'];
 
 	ground.x = 0;
-	ground.y = 298;
+	ground.y = game_y - ground_y;
 	gameScene.addChild(ground);
 	gameScene.addEventListener("enterframe", function() {
 		if (game.input.up) {
@@ -67,7 +68,7 @@ function initWorld() {
 
 }
 function makeBackground(image) {
-	var bg = new Sprite(1024, 768);
+	var bg = new Sprite(game_x, game_y);
 	bg.image = image;
 	return bg;
 }
