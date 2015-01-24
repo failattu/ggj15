@@ -64,7 +64,17 @@ function initWorld() {
 			addEnemy(ground,p1,p2);
 		}
 	});
-
+var label2 = new Label();
+label2.width = 256;
+label2.height = 64;
+label2.font = "12px 'Arial'";
+label2.color = 'rgb(0, 0, 0)';
+label2.y = 40;
+label2.x = 50;
+label2.addEventListener('enterframe', function(){
+	this.text = "Player 1 HP " + p1.hp;
+});
+gameScene.addChild(label2);
 }
 function makeBackground(image) {
 	var bg = new Sprite(1024, 768);
