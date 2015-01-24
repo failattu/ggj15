@@ -8,9 +8,11 @@ function addEnemy(ground,p1,p2) {
 	    if(this.intersect(ground)) {
 				if(this.x < (game_x * 0.5)) {
 					p1.resources -= 3
+					game.assets['assets/collideground.wav'].play();
 				}
 				else {
 					p2.resources -= 3
+					game.assets['assets/collideground.wav'].play();
 				}
 				this.removeEventListener('enterframe');
 	    	game.currentScene.removeChild(this);
@@ -19,6 +21,7 @@ function addEnemy(ground,p1,p2) {
         	currentBullet = bullets[i];
 	    	if(this.intersect(currentBullet)) {
 		    	console.log("intersect with bullet!");
+				game.assets['assets/hitenemy.wav'].play();
 		    	currentBullet.removeEventListener("enterframe");
 		    	game.currentScene.removeChild(currentBullet);
 		    	this.removeEventListener("enterframe");
