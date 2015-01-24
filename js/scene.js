@@ -1,3 +1,5 @@
+var bullets = [];
+
 function initWorld() {
 	var gameScene = new Scene();
 	game.pushScene(gameScene);
@@ -29,17 +31,13 @@ function initWorld() {
     ground.y = 298;
 
     gameScene.addChild(ground);
-  	var bullet;
     gameScene.addEventListener("enterframe", function() {
         if (game.input.up) {
-			bullet = fire(p1, p1_cannon);
+			fire(p1, p1_cannon);
 		}
 		p1.fireCooldown -= 1;
-    });
-
-	gameScene.addEventListener('enterframe',function(){
 		if(game.frame % 120 == 0) {
 			addEnemy(ground);
 		}
-	});
+    });
 }
