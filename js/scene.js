@@ -1,4 +1,6 @@
 var bullets = [];
+var ufoActive = false;
+
 function initWorld() {
 	var gameScene = new Scene();
 	game.pushScene(gameScene);
@@ -61,7 +63,7 @@ function initWorld() {
 			fire(p2, p2_cannon);
 		}
 		p2.fireCooldown -=1;
-		if(game.frame % 120 == 0) {
+		if(game.currentScene.age % 120 == 0) {
 			addEnemy(ground,p1,p2);
 		}
 	});
