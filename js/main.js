@@ -32,10 +32,10 @@ window.onload = function() {
 
 	    p1_cannon.addEventListener("enterframe", function(){
 	        if (game.input.left && !game.input.right) {
-				this.rotation -= 1.5;
+				if (this.x != -50) this.x -= 1;
 			}
 	        if (game.input.right && !game.input.left) {
-				this.rotation += 1.5;
+				if(this.x < 274)this.x += 1;
 			}
 	    });
 
@@ -49,17 +49,18 @@ window.onload = function() {
 
 	    gameScene.addEventListener("enterframe", function() {
 	        if (game.input.up) {
-				fire(p1, 50, 220);
+				fire(p1, p1_cannon);
 			}
 			p1.fireCooldown -= 1;
 	    });
 	}
 
-	function fire(player, startX, startY) {
+	function fire(player,cannon) {
 	    if (player.fireCooldown <= 0 && player.resources != 0) {
 		    var bullet = new Sprite(16, 16);
-		    bullet.x = startX;
-		    bullet.y = startY;
+		    bullet.x = (cannon.x + 50);
+		    bullet.y = (cannon.y);
+        console.log(bullet.x)
 		    bullet.image = game.assets['assets/bullet.png'];
 
 		    bullet.addEventListener('enterframe', function(e) {
