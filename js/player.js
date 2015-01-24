@@ -1,4 +1,5 @@
-function Player() {
+function Player(id) {
+	this.id = id;
 	this.fireCooldown = 0;
 	this.resources = 30;
 	this.hp = 1;
@@ -11,14 +12,14 @@ function fire(player,cannon,enemies) {
 	    // if (bullets.length > 10) {
 	    // 	bullets.shift();
 	    // }
-		bullet.id = bullets.length - 1;
-		// if (bullets.length > 1) { // fix for strange bug
-		// 	bullet.id -= 1;
-		// }
-		// console.log("Bullet " + bullet.id + " created. Length after creation: " + bullets.length);
-	    bullet.x = (cannon.x + cannon_x * 0.5);
+	    bullet.x = (cannon.x + cannon_x * 0.5) - 8;
 	    bullet.y = (cannon.y);
-	    bullet.image = game.assets['assets/bullet.png'];
+	    if (player.id == 1) {
+	    	bullet.image = game.assets['assets/bullet.png'];
+	    }
+	    else {
+	    	bullet.image = game.assets['assets/bullet_p2.png'];
+	    }
 	    bullet.addEventListener('enterframe', function(e) {
 	        this.y -= 10;
 	      	if(this.y < 0) {

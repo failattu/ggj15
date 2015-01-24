@@ -15,7 +15,7 @@ function addUfo (ground, p1, p2) {
 	var ufo_x = game_x * 0.6;
 	var ufo_y = game_y * 0.3;
 	var ufo = new Sprite(ufo_x, ufo_y);
-	ufo.image = game.assets['assets/ground.png'];
+	ufo.image = game.assets['assets/ufo.png'];
 	ufo.x = game_x * 0.5 - ufo_x * 0.5;
 	ufo.y = 0 - game_y * 0.2;
 	ufo.opacity = 0;
@@ -69,7 +69,7 @@ function addSmallEnemy (ground, p1, p2) {
 	enemy.x = rand(game_x - game_x * 0.1) + game_x * 0.05;
 	// enemy.x = 200;
 	enemy.y = 0;
-	enemy.image = game.assets['assets/bullet.png'];
+	enemy.image = game.assets['assets/enemy.png'];
 
 	enemy.addEventListener('enterframe', function(e) {
 	    if(this.intersect(ground)) {

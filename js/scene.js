@@ -13,13 +13,13 @@ ufoSpawnTime = 60 * (rand(20) + 10);
 function initWorld() {
 	var gameScene = new Scene();
 	game.pushScene(gameScene);
-	var p1 = new Player();
-	var p2 = new Player();
+	var p1 = new Player(1);
+	var p2 = new Player(2);
 	var firstrun = false;
   var p1_cannon = new Sprite(cannon_x,cannon_y);
 	var p2_cannon = new Sprite(cannon_x,cannon_y);
 	p1_cannon.image = game.assets['assets/cannon.png'];
-	p2_cannon.image = game.assets['assets/cannon.png'];
+	p2_cannon.image = game.assets['assets/cannon_p2.png'];
 	var bg = makeBackground(game.assets['assets/bground.png'])
 	gameScene.addChild(bg);
 
