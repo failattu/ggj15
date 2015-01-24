@@ -28,7 +28,19 @@ function initWorld() {
 			}
 		}
 		else {
-			console.log("p1 has died"); game.stop();
+			console.log("p1 has died");
+			var label2 = new Label();
+			label2.width = p2textwidthW;
+			label2.height = p2textheightW;
+			label2.font = "24px 'Arial'";
+			label2.color = 'rgb(0, 0, 0)';
+			label2.y = p2locatioyW;
+			label2.x = p2locatioxW;
+			label2.addEventListener('enterframe', function(){
+				this.text = "Player 2 has won the game";
+			});
+			gameScene.addChild(label2);
+			game.stop();
 		}
   	});
 
@@ -43,6 +55,17 @@ function initWorld() {
 		}
 	}
 	else{
+		var label2 = new Label();
+		label2.width = p1textwidthw;
+		label2.height = p1textheightw;
+		label2.font = "24px 'Arial'";
+		label2.color = 'rgb(0, 0, 0)';
+		label2.y = p1locatioyw;
+		label2.x = p1locatioxw;
+		label2.addEventListener('enterframe', function(){
+			this.text = "Player 1 has won the game ";
+		});
+		gameScene.addChild(label2);
 		game.stop();
 		}
 	});

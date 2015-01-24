@@ -14,3 +14,14 @@ var p2textwidth = 256;
 var p2textheight = 64;
 var p2locatioy = 40;
 var p2locatiox = 600;
+
+
+var p1textwidthw = 256;
+var p1textheightw = 64;
+var p1locatioyw = 150;
+var p1locatioxw = 50;
+
+var p2textwidthw = 256;
+var p2textheightw = 64;
+var p2locatioyw = 150;
+var p2locatioxw = 600;
