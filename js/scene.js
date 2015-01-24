@@ -65,17 +65,28 @@ function initWorld() {
 			addEnemy(ground,p1,p2);
 		}
 	});
-var label2 = new Label();
-label2.width = 256;
-label2.height = 64;
-label2.font = "12px 'Arial'";
-label2.color = 'rgb(0, 0, 0)';
-label2.y = 40;
-label2.x = 50;
-label2.addEventListener('enterframe', function(){
-	this.text = "Player 1 HP " + p1.hp;
-});
-gameScene.addChild(label2);
+	var label2 = new Label();
+	label2.width = p1textwidth;
+	label2.height = p1textheight;
+	label2.font = "12px 'Arial'";
+	label2.color = 'rgb(0, 0, 0)';
+	label2.y = p1locatioy;
+	label2.x = p1locatiox;
+	label2.addEventListener('enterframe', function(){
+		this.text = "Player 1 HP " + p1.hp + "\n Player 1 Ammo " + p1.resources;
+	});
+	gameScene.addChild(label2);
+	var label2 = new Label();
+	label2.width = p2textwidth;
+	label2.height = p2textheight;
+	label2.font = "12px 'Arial'";
+	label2.color = 'rgb(0, 0, 0)';
+	label2.y = p2locatioy;
+	label2.x = p2locatiox;
+	label2.addEventListener('enterframe', function(){
+		this.text = "Player 2 HP " + p2.hp + "\n Player 2 Ammo " + p2.resources;
+	});
+	gameScene.addChild(label2);
 }
 function makeBackground(image) {
 	var bg = new Sprite(game_x, game_y);

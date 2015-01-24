@@ -4,3 +4,13 @@ var ground_y = 50;
 
 var cannon_x = 100;
 var cannon_y = 100;
+
+var p1textwidth = 256;
+var p1textheight = 64;
+var p1locatioy = 40;
+var p1locatiox = 50;
+
+var p2textwidth = 256;
+var p2textheight = 64;
+var p2locatioy = 40;
+var p2locatiox = 600;
