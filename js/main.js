@@ -12,7 +12,8 @@ game.preload('assets/chara1.png',
 			'assets/bullet.png', 
 			'assets/collideground.wav', 
 			'assets/explode.wav',
-			'assets/hitenemy.wav');
+			'assets/hitenemy.wav',
+			'assets/scrap.png');
 game.onload = function () {
 	initWorld();
 };

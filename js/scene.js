@@ -1,5 +1,10 @@
+function rand(num) {
+	return Math.floor(Math.random() * num);
+}
+
 var bullets = [];
 var ufoActive = false;
+ufoSpawnTime = 60 * (rand(20) + 10);
 
 function initWorld() {
 	var gameScene = new Scene();
@@ -24,10 +29,10 @@ function initWorld() {
   	p1_cannon.addEventListener("enterframe", function(){
     	if(p1.resources > 0){
 			if (game.input.left && !game.input.right) {
-				if (this.x >= 0) this.x -= 3;
+				if (this.x >= 0) this.x -= 5;
 			}
     		if (game.input.right && !game.input.left) {
-				if(this.x <= game_x * 0.5 - cannon_x) this.x += 3;
+				if(this.x <= game_x * 0.5 - cannon_x) this.x += 5;
 			}
 		}
 		else {
@@ -52,10 +57,10 @@ function initWorld() {
 	if(p2.resources > 0)
 	{
 		if (game.input.lefta && !game.input.rightd) {
-			if (this.x >= game_x * 0.5) this.x -= 3;
+			if (this.x >= game_x * 0.5) this.x -= 5;
 		}
 		if (game.input.rightd && !game.input.lefta) {
-			if(this.x <= game_x - cannon_x)this.x += 3;
+			if(this.x <= game_x - cannon_x)this.x += 5;
 		}
 	}
 	else{
@@ -76,7 +81,7 @@ function initWorld() {
 		}
 	});
 	var ground = new Sprite(game_x, ground_y);
-	ground.image = game.assets['assets/ground.png'];
+	// ground.image = game.assets['assets/ground.png'];
 
 	ground.x = 0;
 	ground.y = game_y - ground_y;

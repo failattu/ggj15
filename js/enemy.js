@@ -2,7 +2,7 @@ function addEnemy(ground,p1,p2) {
 	if (ufoActive) {
 
 	}
-	else if (game.currentScene.age % 3600 == 0) {
+	else if (game.currentScene.age % ufoSpawnTime == 0) {
 		addUfo(ground, p1, p2);
 		ufoActive = true;
 	}
@@ -42,6 +42,7 @@ function addUfo (ground, p1, p2) {
 			    	this.removeEventListener("enterframe");
 			    	game.currentScene.removeChild(this);
 			    	ufoActive = false;
+			    	ufoSpawnTime = 60 * (rand(20) + 10);
 			    }
 			    else {
 			    	this.hp -= 1;
@@ -88,6 +89,11 @@ function addSmallEnemy (ground, p1, p2) {
 				game.assets['assets/hitenemy.wav'].play();
 		    	currentBullet.removeEventListener("enterframe");
 		    	game.currentScene.removeChild(currentBullet);
+		    	
+		    	if (rand(10) <= 5) {
+		    		spawnScrap(this.x, this.y, ground, p1, p2);
+		    	}
+
 		    	this.removeEventListener("enterframe");
 		    	game.currentScene.removeChild(this);
 		    	bullets.splice(i, 1);
@@ -98,6 +104,27 @@ function addSmallEnemy (ground, p1, p2) {
 	game.currentScene.addChild(enemy);
 }
 
-function rand(num) {
-	return Math.floor(Math.random() * num);
+function spawnScrap(startX, startY, ground, p1, p2) {
+	scrap = new Sprite(24, 12);
+	scrap.x = startX;
+	scrap.y = startY;
+	scrap.image = game.assets['assets/scrap.png'];
+	game.currentScene.addChild(scrap);
+	scrap.x_direction = rand(6) - 2;
+	scrap.addEventListener('enterframe', function(e) {
+	    if(this.intersect(ground)) {
+				if(this.x < (game_x * 0.5)) {
+					p1.resources += 1
+					game.assets['assets/collideground.wav'].play();
+				}
+				else {
+					p2.resources += 1
+					game.assets['assets/collideground.wav'].play();
+				}
+				this.removeEventListener('enterframe');
+	    	game.currentScene.removeChild(this);
+	    }
+    	this.y += this.age - 8;
+    	this.x += this.x_direction;
+	});
 }

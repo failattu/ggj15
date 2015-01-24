@@ -22,7 +22,7 @@ function fire(player,cannon,enemies) {
 	    player.fireCooldown = 20;
 	    player.resources -= 1
 	    bullets.push(bullet);
-	    if (bullets.length > 6) {
+	    if (bullets.length > 10) {
 	    	bullets.shift();
 	    }
 	}
