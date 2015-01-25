@@ -99,7 +99,7 @@ function addSmallEnemy (ground, p1, p2) {
 		    	if (rand(10) <= 5) {
 		    		spawnScrap(this.x, this.y, ground, p1, p2);
 		    	}
-		    	explosionFx(this.x - this.width/2, this.y - this.height/2);
+		    	explosionFx(this.x, this.y);
 
 		    	destroy(this);
 	   		}
