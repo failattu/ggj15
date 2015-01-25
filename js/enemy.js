@@ -39,7 +39,7 @@ function addUfo (ground, p1, p2) {
 		    	if(this.intersect(currentBullet)) {
 			    	// console.log("intersect with bullet!");
 			    	game.assets['assets/hitenemy.wav'].play();
-			    	// explosionFx(this.x, this.y);
+			    	//  explosionFx(this.x, this.y);
 			    	destroyBullet(i);
 			    	// console.log("Removed bullet " + i + " from bullets (collide).");
 
