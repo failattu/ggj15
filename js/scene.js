@@ -17,7 +17,7 @@ function initWorld() {
 	var startScene = new Scene();
 	var gameScene = new Scene();
 	game.pushScene(startScene);
-	var bgstart = makeBackground(game.assets['assets/bg.png'])
+	var bgstart = makeBackground(game.assets['assets/startscreen.png'])
 	bgstart.addEventListener('touchstart', function(){
 		console.log("touchstarted")
 		stargame = true;
