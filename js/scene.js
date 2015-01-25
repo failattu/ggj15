@@ -101,6 +101,8 @@ function initWorld() {
 		if(game.currentScene.age % 120 == 0) {
 			addEnemy(ground,p1,p2);
 		}
+		console.log("ufotimer: " + ufotimer);
+		console.log("ufospawntime: " + ufoSpawnTime);
 	});
 
 	creatertxt(p1, gameScene);

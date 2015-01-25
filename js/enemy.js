@@ -3,7 +3,7 @@ function addEnemy(ground,p1,p2) {
 	if (ufoActive) {
 
 	}
-	else if (ufotimer % ufoSpawnTime == 0) {
+	else if (ufotimer > ufoSpawnTime) {
 		addUfo(ground, p1, p2);
 		ufoActive = true;
 		ufotimer = 0;
@@ -39,6 +39,7 @@ function addUfo (ground, p1, p2) {
 		    	if(this.intersect(currentBullet)) {
 			    	// console.log("intersect with bullet!");
 			    	game.assets['assets/hitenemy.wav'].play();
+			    	// explosionFx(this.x, this.y);
 			    	destroyBullet(i);
 			    	// console.log("Removed bullet " + i + " from bullets (collide).");
 
