@@ -17,7 +17,8 @@ game.preload('assets/chara1.png',
 			'assets/hitenemy.wav',
 			'assets/scrap.png',
 			'assets/enemy.png',
-			'assets/ufo.png');
+			'assets/ufo.png',
+			'assets/explosion.png');
 game.onload = function () {
 	initWorld();
 };

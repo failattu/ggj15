@@ -103,31 +103,31 @@ function initWorld() {
 		}
 	});
 
-	creatertxt(1, p1,gameScene);
-	creatertxt(2, p2,gameScene);
+	creatertxt(p1, gameScene);
+	creatertxt(p2, gameScene);
 }
 function makeBackground(image) {
 	var bg = new Sprite(game_x, game_y);
 	bg.image = image;
 	return bg;
 }
-function creatertxt(player, pl,scene) {
+function creatertxt(player, scene) {
 	var rt = new Label();
 	rt.width = rt_w;
 	rt.height = rt_h;
 	rt.font = "12px 'Exo 2'";
 	rt.color = 'rgb(0, 0, 0)';
 	rt.y = rt_y;
-	if (player == 1) {
+	if (player.id == 1) {
 		rt.x = rt_x_p1;
 		rt.addEventListener('enterframe', function(){
-			this.text = "Player 1 Resources " + pl.resources;
+			this.text = "Player 1 Resources " + player.resources;
 		});
 	}
 	else {
 		rt.x = rt_x_p2;
 		rt.addEventListener('enterframe', function(){
-			this.text = "Player 2 Resources " + pl.resources;
+			this.text = "Player 2 Resources " + player.resources;
 		});
 	}
 	scene.addChild(rt);
