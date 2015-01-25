@@ -85,6 +85,7 @@ function addSmallEnemy (ground, p1, p2) {
 				p2.resources -= 3
 				game.assets['assets/collideground.wav'].play();
 			}
+			explosionFx(this.x, this.y);
 			destroy(this);
 	    }
 	    for (i = 0; i < bullets.length; i++) {
@@ -99,6 +100,7 @@ function addSmallEnemy (ground, p1, p2) {
 		    	if (rand(10) <= 5) {
 		    		spawnScrap(this.x, this.y, ground, p1, p2);
 		    	}
+		    	explosionFx(this.x, this.y);
 
 		    	destroy(this);
 	   		}
@@ -131,4 +133,39 @@ function spawnScrap(startX, startY, ground, p1, p2) {
     	this.y += this.age - 8;
     	this.x += this.x_direction;
 	});
+}
+
+function explosionFx (x, y) {
+	var exp = new Sprite(32, 32);
+	exp.x = x - 8;
+	exp.y = y - 8;
+	exp.opacity = 0;
+	exp.rotation = rand(360);
+	exp.pastPeak = false;
+	exp.image = game.assets['assets/explosion.png'];
+
+	exp.addEventListener('enterframe', function () {
+		if (exp.pastPeak == false) {
+			exp.opacity = Math.round((exp.opacity + 0.15) * 10) / 10;
+			if (exp.scaleX < 2) {
+				exp.scale(1.4, 1.4);
+			}
+			else {
+				exp.scale(0.8, 0.8);
+			}
+			if (exp.opacity >= 1) {
+				exp.pastPeak = true;
+			}
+		}
+		else {
+			exp.opacity = Math.round((exp.opacity - 0.15) * 10) / 10;
+			exp.scale(0.9,0.9);
+			if (exp.opacity <= 0) {
+				destroy(exp);
+			}
+		}
+		exp.rotation += 15;
+	});
+
+	game.currentScene.addChild(exp);
 }
