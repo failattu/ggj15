@@ -20,13 +20,13 @@ function addUfo (ground, p1, p2) {
 	ufo.y = 0 - game_y * 0.2;
 	ufo.opacity = 0;
 	ufo.hp = rand(15) + 5;
-	
+
 	ufo.addEventListener('enterframe', function(e) {
 	    if (this.opacity < 1) {
 	    	this.opacity += 0.005;
 	    }
 	    if (this.intersect(ground)) {
-	    	// add game over for both here
+	    	gameover = true;
 	    	ufoActive = false;
 			destroy(this);
 	    }
@@ -91,7 +91,7 @@ function addSmallEnemy (ground, p1, p2) {
 		    	// console.log("i is " + i + ", currentBullet is " + currentBullet.id);
 		    	destroyBullet(i);
 		    	// console.log("Removed bullet " + i + " from bullets (collide).");
-		    	
+
 		    	if (rand(10) <= 5) {
 		    		spawnScrap(this.x, this.y, ground, p1, p2);
 		    	}

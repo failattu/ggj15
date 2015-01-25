@@ -9,13 +9,15 @@ function destroy (node) {
 var bullets = [];
 var ufoActive = false;
 ufoSpawnTime = 60 * (rand(20) + 10);
-
+var firstrun = false;
+var gameover = false;
 function initWorld() {
+	var endScene = new Scene();
+	var startScene = new Scene();
 	var gameScene = new Scene();
 	game.pushScene(gameScene);
 	var p1 = new Player(1);
 	var p2 = new Player(2);
-	var firstrun = false;
   var p1_cannon = new Sprite(cannon_x,cannon_y);
 	var p2_cannon = new Sprite(cannon_x,cannon_y);
 	p1_cannon.image = game.assets['assets/cannon.png'];
@@ -31,7 +33,7 @@ function initWorld() {
 	gameScene.addChild(p1_cannon);
 	gameScene.addChild(p2_cannon);
   	p1_cannon.addEventListener("enterframe", function(){
-    	if(p1.resources > 0){
+    	if(p1.resources > 0) {
 			if (game.input.lefta && !game.input.rightd) {
 				if (this.x >= 0) this.x -= 5;
 			}
@@ -40,48 +42,21 @@ function initWorld() {
 			}
 		}
 		else {
-			console.log("p1 has died");
-			var label2 = new Label();
-			label2.width = p2textwidthw;
-			label2.height = p2textheightw;
-			label2.font = "24px 'Exo 2'";
-			label2.color = 'rgb(0, 0, 0)';
-			label2.y = p2locatioyw;
-			label2.x = p2locatioxw;
-			label2.addEventListener('enterframe', function(){
-				this.text = "Player 2 has won the game";
-			});
-			gameScene.addChild(label2);
-			if(firstrun== true) game.stop();
-			firstrun =true;
+			player1died(endScene, game);
 		}
   	});
 
 	p2_cannon.addEventListener("enterframe", function(){
-	if(p2.resources > 0)
-	{
-		if (game.input.left && !game.input.right) {
-			if (this.x >= game_x * 0.5) this.x -= 5;
+		if(p2.resources > 0) {
+			if (game.input.left && !game.input.right) {
+				if (this.x >= game_x * 0.5) this.x -= 5;
+			}
+			if (game.input.right && !game.input.left) {
+				if(this.x <= game_x - cannon_x)this.x += 5;
+			}
 		}
-		if (game.input.right && !game.input.left) {
-			if(this.x <= game_x - cannon_x)this.x += 5;
-		}
-	}
-	else{
-		var label2 = new Label();
-		label2.width = p1textwidthw;
-		label2.height = p1textheightw;
-		label2.font = "24px 'Exo 2'";
-		label2.color = 'rgb(0, 0, 0)';
-		label2.y = p1locatioyw;
-		label2.x = p1locatioxw;
-		label2.addEventListener('enterframe', function(){
-			this.text = "Player 1 has won the game ";
-		});
-		gameScene.addChild(label2);
-
-		if(firstrun== true) game.stop();
-		firstrun =true;
+		else {
+			player2died(endScene, game)
 		}
 	});
 	var ground = new Sprite(game_x, ground_y);
@@ -91,6 +66,9 @@ function initWorld() {
 	ground.y = game_y - ground_y;
 	gameScene.addChild(ground);
 	gameScene.addEventListener("enterframe", function() {
+		if(gameover == true){
+			gameOverboth(endScene,game);
+			}
 		if (game.input.upw) {
 			fire(p1, p1_cannon);
 		}
