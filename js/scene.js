@@ -12,9 +12,7 @@ ufoSpawnTime = 60 * (rand(20) + 10);
 
 function initWorld() {
 	var endScene = new Scene();
-	//game.pushScene(endScene);
 	var startScene = new Scene();
-	//game.pushScene(startScene);
 	var gameScene = new Scene();
 	game.pushScene(gameScene);
 	var p1 = new Player(1);
@@ -107,6 +105,14 @@ function initWorld() {
 			addEnemy(ground,p1,p2);
 		}
 	});
+	resources(gameScene,p2,p1);
+}
+function makeBackground(image) {
+	var bg = new Sprite(game_x, game_y);
+	bg.image = image;
+	return bg;
+}
+function resources(gameScene,p2,p1){
 	var label2 = new Label();
 	label2.width = p1textwidth;
 	label2.height = p1textheight;
@@ -129,9 +135,4 @@ function initWorld() {
 		this.text = "Player 2 Resources " + p2.resources;
 	});
 	gameScene.addChild(label2);
-}
-function makeBackground(image) {
-	var bg = new Sprite(game_x, game_y);
-	bg.image = image;
-	return bg;
 }
