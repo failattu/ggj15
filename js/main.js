@@ -1,5 +1,5 @@
 enchant();
-var game = new Game(game_x, game_y);
+var game = new Game(game_w, game_h);
 game.fps = 60;
 game.keybind(65, 'lefta');
 game.keybind(68, 'rightd');

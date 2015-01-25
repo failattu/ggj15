@@ -1,6 +1,6 @@
 function Player(id) {
 	this.id = id;
-	this.cannon = new Sprite(cannon_x, cannon_y);
+	this.cannon = new Sprite(cannon_w, cannon_h);
 	this.fireCooldown = 0;
 	this.resources = 30;
 	this.hp = 1;
@@ -59,8 +59,8 @@ function gameOverboth(endScene,game){
 	label2.height = p1textheightw;
 	label2.font = "40px 'Arial'";
 	label2.color = 'rgb(0, 0, 0)';
-	label2.y = game_y/2;
-	label2.x = game_x/2;
+	label2.y = game_h/2;
+	label2.x = game_w/2;
 	label2.addEventListener('enterframe', function(){
 		var curstate = startgame;
 		if(startgame != curstate){destroy(this);}
@@ -82,7 +82,7 @@ function fire(player,cannon,enemies) {
 	    // if (bullets.length > 10) {
 	    // 	bullets.shift();
 	    // }
-	    bullet.x = (cannon.x + cannon_x * 0.5) - 8;
+	    bullet.x = (cannon.x + cannon_w * 0.5) - 8;
 	    bullet.y = (cannon.y);
 	    if (player.id == 1) {
 	    	bullet.image = game.assets['assets/bullet.png'];

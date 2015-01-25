@@ -14,12 +14,12 @@ function addEnemy(ground, p1, p2, groundArt) {
 }
 
 function addUfo (ground, p1, p2) {
-	var ufo_x = game_x * 0.6;
-	var ufo_y = game_y * 0.3;
+	var ufo_x = game_w * 0.6;
+	var ufo_y = game_h * 0.3;
 	var ufo = new Sprite(ufo_x, ufo_y);
 	ufo.image = game.assets['assets/ufo.png'];
-	ufo.x = game_x * 0.5 - ufo_x * 0.5;
-	ufo.y = 0 - game_y * 0.2;
+	ufo.x = game_w * 0.5 - ufo_x * 0.5;
+	ufo.y = 0 - game_h * 0.2;
 	ufo.opacity = 0;
 	ufo.hp = rand(15) + 5;
 
@@ -68,7 +68,7 @@ function addUfo (ground, p1, p2) {
 
 function addSmallEnemy (ground, p1, p2) {
 	var enemy = new Sprite(32, 32);
-	enemy.x = rand(game_x - game_x * 0.1) + game_x * 0.05;
+	enemy.x = rand(game_w - game_w * 0.1) + game_w * 0.05;
 	// enemy.x = 200;
 	enemy.y = 0;
 	enemy.image = game.assets['assets/enemy.png'];
@@ -76,7 +76,7 @@ function addSmallEnemy (ground, p1, p2) {
 	enemy.addEventListener('enterframe', function(e) {
 			if(gameover == true){destroy(this);}
 	    if(this.intersect(ground)) {
-			if(this.x < (game_x * 0.5)) {
+			if(this.x < (game_w * 0.5)) {
 				p1.resources -= 3
 				game.assets['assets/collideground.wav'].play();
 			}
@@ -119,7 +119,7 @@ function spawnScrap(startX, startY, ground, p1, p2) {
 	scrap.addEventListener('enterframe', function(e) {
 	    if(gameover == true){destroy(this);}
 			if(this.intersect(ground)) {
-			if(this.x < (game_x * 0.5)) {
+			if(this.x < (game_w * 0.5)) {
 				p1.resources += 1
 				// game.assets['assets/collideground.wav'].play();
 			}
