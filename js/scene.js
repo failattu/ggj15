@@ -25,6 +25,11 @@ function initWorld() {
 	var bgend = makeBackground(game.assets['assets/bground.png'])
 	bgend.addEventListener('touchstart', function(){
 		console.log("touchstarted")
+		p1.resources = 30;
+		p2.resources = 30;
+		ufotimer = 0;
+		firstrun = false;
+		gameover = false;
 		game.pushScene(startScene);
 	});
 	startScene.addChild(bgstart);

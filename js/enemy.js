@@ -24,6 +24,7 @@ function addUfo (ground, p1, p2) {
 	ufo.hp = rand(15) + 5;
 
 	ufo.addEventListener('enterframe', function(e) {
+		if(gameover == true){destroy(this);}
 	    if (this.opacity < 1) {
 	    	this.opacity += 0.005;
 	    }
@@ -74,6 +75,7 @@ function addSmallEnemy (ground, p1, p2) {
 	enemy.image = game.assets['assets/enemy.png'];
 
 	enemy.addEventListener('enterframe', function(e) {
+			if(gameover == true){destroy(this);}
 	    if(this.intersect(ground)) {
 			if(this.x < (game_x * 0.5)) {
 				p1.resources -= 3
@@ -114,7 +116,8 @@ function spawnScrap(startX, startY, ground, p1, p2) {
 	game.currentScene.addChild(scrap);
 	scrap.x_direction = rand(10) - 5;
 	scrap.addEventListener('enterframe', function(e) {
-	    if(this.intersect(ground)) {
+	    if(gameover == true){destroy(this);}
+			if(this.intersect(ground)) {
 			if(this.x < (game_x * 0.5)) {
 				p1.resources += 1
 				// game.assets['assets/collideground.wav'].play();

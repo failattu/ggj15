@@ -6,6 +6,7 @@ function Player(id) {
 }
 function player1died(endScene, game)
 {
+	gameover = true
 	console.log("p1 has died");
 	var label2 = new Label();
 	label2.width = p2textwidthw;
@@ -22,6 +23,7 @@ function player1died(endScene, game)
 	firstrun =true;
 }
 function player2died(endScene, game){
+	gameover = true
 	var label2 = new Label();
 	label2.width = p1textwidthw;
 	label2.height = p1textheightw;
@@ -69,6 +71,7 @@ function fire(player,cannon,enemies) {
 	    	bullet.image = game.assets['assets/bullet_p2.png'];
 	    }
 	    bullet.addEventListener('enterframe', function(e) {
+				  if(gameover == true){destroyBullet(bullets.indexOf(bullet));}
 	        this.y -= 10;
 	      	if(this.y < 0) {
 	      		destroyBullet(bullets.indexOf(bullet));
