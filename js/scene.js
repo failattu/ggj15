@@ -42,20 +42,7 @@ function initWorld() {
 			}
 		}
 		else {
-			console.log("p1 has died");
-			var label2 = new Label();
-			label2.width = p2textwidthw;
-			label2.height = p2textheightw;
-			label2.font = "24px 'Arial'";
-			label2.color = 'rgb(0, 0, 0)';
-			label2.y = p2locatioyw;
-			label2.x = p2locatioxw;
-			label2.addEventListener('enterframe', function(){
-				this.text = "Player 2 has won the game";
-			});
-			endScene.addChild(label2);
-			if(firstrun== true) game.pushScene(endScene);
-			firstrun =true;
+			player1died(endScene,firstrun, game);
 		}
   	});
 

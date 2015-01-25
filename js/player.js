@@ -4,7 +4,39 @@ function Player(id) {
 	this.resources = 30;
 	this.hp = 1;
 }
+function player1died(endScene,firstrun, game)
+{
+	console.log("p1 has died");
+	var label2 = new Label();
+	label2.width = p2textwidthw;
+	label2.height = p2textheightw;
+	label2.font = "24px 'Arial'";
+	label2.color = 'rgb(0, 0, 0)';
+	label2.y = p2locatioyw;
+	label2.x = p2locatioxw;
+	label2.addEventListener('enterframe', function(){
+		this.text = "Player 2 has won the game";
+	});
+	endScene.addChild(label2);
+	if(firstrun== true) game.pushScene(endScene);
+	firstrun =true;
+}
+function player2died(endScene,firstrun, game){
+	var label2 = new Label();
+	label2.width = p1textwidthw;
+	label2.height = p1textheightw;
+	label2.font = "24px 'Arial'";
+	label2.color = 'rgb(0, 0, 0)';
+	label2.y = p1locatioyw;
+	label2.x = p1locatioxw;
+	label2.addEventListener('enterframe', function(){
+		this.text = "Player 1 has won the game ";
+	});
+	gameScene.addChild(label2);
 
+	if(firstrun== true) game.pushScene(endScene);
+	firstrun =true;
+}
 function fire(player,cannon,enemies) {
     if (player.fireCooldown <= 0 && player.resources != 0) {
 	    var bullet = new Sprite(16, 16);
