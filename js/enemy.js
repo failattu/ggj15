@@ -1,5 +1,5 @@
 var ufotimer = 0.0;
-function addEnemy(ground,p1,p2) {
+function addEnemy(ground, p1, p2, groundArt) {
 	if (ufoActive) {
 
 	}
@@ -9,7 +9,7 @@ function addEnemy(ground,p1,p2) {
 		ufotimer = 0;
 	}
 	else {
-		addSmallEnemy(ground,p1,p2);
+		addSmallEnemy(ground, p1, p2, groundArt);
 	}
 }
 
@@ -68,7 +68,7 @@ function addUfo (ground, p1, p2) {
 	game.currentScene.addChild(ufo);
 }
 
-function addSmallEnemy (ground, p1, p2) {
+function addSmallEnemy (ground, p1, p2, groundArt) {
 	var enemy = new Sprite(16, 16);
 	enemy.x = rand(game_x - game_x * 0.1) + game_x * 0.05;
 	// enemy.x = 200;
