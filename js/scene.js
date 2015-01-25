@@ -17,13 +17,18 @@ function initWorld() {
 	var startScene = new Scene();
 	var gameScene = new Scene();
 	game.pushScene(startScene);
-	var bg = makeBackground(game.assets['assets/bground.png'])
-	bg.addEventListener('touchstart', function(){
+	var bgstart = makeBackground(game.assets['assets/bground.png'])
+	bgstart.addEventListener('touchstart', function(){
 		console.log("touchstarted")
 		game.pushScene(gameScene);
 	});
-
-	startScene.addChild(bg);
+	var bgend = makeBackground(game.assets['assets/bground.png'])
+	bgend.addEventListener('touchstart', function(){
+		console.log("touchstarted")
+		game.pushScene(startScene);
+	});
+	startScene.addChild(bgstart);
+	endScene.addChild(bgend);
 	var p1 = new Player(1);
 	var p2 = new Player(2);
   var p1_cannon = new Sprite(cannon_x,cannon_y);
