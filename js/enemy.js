@@ -44,9 +44,7 @@ function addUfo (ground, p1, p2) {
 			    	// console.log("Removed bullet " + i + " from bullets (collide).");
 
 			    	if (this.hp <= 0) {
-				    	destroy(this);
-				    	ufoActive = false;
-				    	ufoSpawnTime = 60 * (rand(20) + 10);
+				    	ufoDestruction(this);
 				    }
 				    else {
 				    	this.hp -= 1;
@@ -101,7 +99,7 @@ function addSmallEnemy (ground, p1, p2) {
 		    	if (rand(10) <= 5) {
 		    		spawnScrap(this.x, this.y, ground, p1, p2);
 		    	}
-		    	explosionFx(this.x, this.y);
+		    	explosionFx(this.x - this.width/2, this.y - this.height/2);
 
 		    	destroy(this);
 	   		}
@@ -138,8 +136,8 @@ function spawnScrap(startX, startY, ground, p1, p2) {
 
 function explosionFx (x, y) {
 	var exp = new Sprite(32, 32);
-	exp.x = x - 8;
-	exp.y = y - 8;
+	exp.x = x;
+	exp.y = y;
 	exp.opacity = 0;
 	exp.rotation = rand(360);
 	exp.pastPeak = false;
@@ -169,4 +167,35 @@ function explosionFx (x, y) {
 	});
 
 	game.currentScene.addChild(exp);
+}
+
+function ufoDestruction (ufo) {
+	var dyingUfo = new Sprite(ufo.width, ufo.height);
+	dyingUfo.image = game.assets['assets/ufo.png'];
+	dyingUfo.x = ufo.x;
+	dyingUfo.y = ufo.y;
+	dyingUfo.deathFrame = 0;
+
+	destroy(ufo);
+
+	dyingUfo.addEventListener('enterframe', function(e) {
+		if (dyingUfo.deathFrame < 180) {
+			dyingUfo.deathFrame += 1;
+			// console.log("deathframe is " + dyingUfo.deathFrame);
+			if (dyingUfo.deathFrame % 10 == 0) {
+				dyingUfo.x += rand(10) - 5;
+				dyingUfo.y += rand(10) - 5;
+				expX = dyingUfo.x + rand(dyingUfo.width/2) + dyingUfo.width*0.25;
+				expY = dyingUfo.y + rand(dyingUfo.height/2) + dyingUfo.height*0.25;
+				explosionFx(expX, expY);
+				game.assets['assets/hitenemy.wav'].play();
+			}
+		}	
+		else {
+			ufoActive = false;
+			ufoSpawnTime = 60 * (rand(20) + 10);
+			destroy(dyingUfo);
+		}
+	});
+	game.currentScene.addChild(dyingUfo);	
 }

@@ -8,7 +8,7 @@ function destroy (node) {
 
 var bullets = [];
 var ufoActive = false;
-ufoSpawnTime = 60 * (rand(20) + 10);
+ufoSpawnTime = 60 * 4;
 var firstrun = false;
 var gameover = false;
 var startgame = 0;
