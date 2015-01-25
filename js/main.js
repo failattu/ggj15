@@ -7,7 +7,7 @@ game.keybind(87, 'upw');
 game.keybind(83, 'downs');
 game.preload('assets/chara1.png',
 			'assets/ground.png',
-			'assets/bg.png',
+			'assets/bg.jpg',
 			'assets/ground.png',
 			'assets/cannon.png',
 			'assets/cannon_p2.png',
@@ -20,7 +20,7 @@ game.preload('assets/chara1.png',
 			'assets/enemy.png',
 			'assets/ufo.png',
 			'assets/explosion.png',
-			'assets/startscreen.png');
+			'assets/startscreen.jpg');
 game.onload = function () {
 	initWorld();
 };

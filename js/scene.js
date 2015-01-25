@@ -17,13 +17,13 @@ function initWorld() {
 	var startScene = new Scene();
 	var gameScene = new Scene();
 	game.pushScene(startScene);
-	var bgstart = makeBackground(game.assets['assets/startscreen.png'])
+	var bgstart = makeBackground(game.assets['assets/startscreen.jpg'])
 	bgstart.addEventListener('touchstart', function(){
 		console.log("touchstarted")
 		stargame = true;
 		game.pushScene(gameScene);
 	});
-	var bgend = makeBackground(game.assets['assets/bg.png'])
+	var bgend = makeBackground(game.assets['assets/bg.jpg'])
 	bgend.addEventListener('touchstart', function(){
 		console.log("touchstarted")
 		p1.resources = 30;
@@ -40,7 +40,7 @@ function initWorld() {
 	var p2 = new Player(2);
 	p1.cannon.image = game.assets['assets/cannon.png'];
 	p2.cannon.image = game.assets['assets/cannon_p2.png'];
-	var bg = makeBackground(game.assets['assets/bg.png'])
+	var bg = makeBackground(game.assets['assets/bg.jpg'])
 	gameScene.addChild(bg);
 
 	p1.cannon.x = game_w * 0.25 - cannon_w * 0.5;
