@@ -4,7 +4,7 @@ function Player(id) {
 	this.resources = 30;
 	this.hp = 1;
 }
-function player1died(endScene,firstrun, game)
+function player1died(endScene, game)
 {
 	console.log("p1 has died");
 	var label2 = new Label();
@@ -21,7 +21,7 @@ function player1died(endScene,firstrun, game)
 	if(firstrun== true) game.pushScene(endScene);
 	firstrun =true;
 }
-function player2died(endScene,firstrun, game){
+function player2died(endScene, game){
 	var label2 = new Label();
 	label2.width = p1textwidthw;
 	label2.height = p1textheightw;
@@ -32,7 +32,23 @@ function player2died(endScene,firstrun, game){
 	label2.addEventListener('enterframe', function(){
 		this.text = "Player 1 has won the game ";
 	});
-	gameScene.addChild(label2);
+	endScene.addChild(label2);
+
+	if(firstrun== true) game.pushScene(endScene);
+	firstrun =true;
+}
+function gameOverboth(endScene,game){
+	var label2 = new Label();
+	label2.width = p1textwidthw;
+	label2.height = p1textheightw;
+	label2.font = "40px 'Arial'";
+	label2.color = 'rgb(0, 0, 0)';
+	label2.y = game_y/2;
+	label2.x = game_x/2;
+	label2.addEventListener('enterframe', function(){
+		this.text = "GAME OVER!! ";
+	});
+	endScene.addChild(label2);
 
 	if(firstrun== true) game.pushScene(endScene);
 	firstrun =true;

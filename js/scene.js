@@ -9,7 +9,8 @@ function destroy (node) {
 var bullets = [];
 var ufoActive = false;
 ufoSpawnTime = 60 * (rand(20) + 10);
-
+var firstrun = false;
+var gameover = false;
 function initWorld() {
 	var endScene = new Scene();
 	var startScene = new Scene();
@@ -17,7 +18,6 @@ function initWorld() {
 	game.pushScene(gameScene);
 	var p1 = new Player(1);
 	var p2 = new Player(2);
-	var firstrun = false;
   var p1_cannon = new Sprite(cannon_x,cannon_y);
 	var p2_cannon = new Sprite(cannon_x,cannon_y);
 	p1_cannon.image = game.assets['assets/cannon.png'];
@@ -42,7 +42,7 @@ function initWorld() {
 			}
 		}
 		else {
-			player1died(endScene,firstrun, game);
+			player1died(endScene, game);
 		}
   	});
 
@@ -57,20 +57,7 @@ function initWorld() {
 		}
 	}
 	else{
-		var label2 = new Label();
-		label2.width = p1textwidthw;
-		label2.height = p1textheightw;
-		label2.font = "24px 'Arial'";
-		label2.color = 'rgb(0, 0, 0)';
-		label2.y = p1locatioyw;
-		label2.x = p1locatioxw;
-		label2.addEventListener('enterframe', function(){
-			this.text = "Player 1 has won the game ";
-		});
-		gameScene.addChild(label2);
-
-		if(firstrun== true) game.pushScene(endScene);
-		firstrun =true;
+		player2died(endScene, game)
 		}
 	});
 	var ground = new Sprite(game_x, ground_y);
@@ -80,6 +67,9 @@ function initWorld() {
 	ground.y = game_y - ground_y;
 	gameScene.addChild(ground);
 	gameScene.addEventListener("enterframe", function() {
+		if(gameover == true){
+			gameOver(endScene,game);
+			}
 		if (game.input.upw) {
 			fire(p1, p1_cannon);
 		}
