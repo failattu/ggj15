@@ -4,6 +4,7 @@ function Player(id) {
 	this.resources = 30;
 	this.hp = 1;
 }
+var counter = 0;
 function player1died(endScene, game)
 {
 	gameover = true
@@ -16,11 +17,16 @@ function player1died(endScene, game)
 	label2.y = p2locatioyw;
 	label2.x = p2locatioxw;
 	label2.addEventListener('enterframe', function(){
+		if(startgame == false){destroy(this);}
 		this.text = "Player 2 has won the game";
 	});
 	endScene.addChild(label2);
 	if(firstrun== true) game.pushScene(endScene);
-	firstrun =true;
+	if(counter == 5){
+		firstrun =true;
+		counter = 0;
+	}
+	counter++;
 }
 function player2died(endScene, game){
 	gameover = true
@@ -32,12 +38,17 @@ function player2died(endScene, game){
 	label2.y = p1locatioyw;
 	label2.x = p1locatioxw;
 	label2.addEventListener('enterframe', function(){
+		if(startgame == false){destroy(this);}
 		this.text = "Player 1 has won the game ";
 	});
 	endScene.addChild(label2);
 
 	if(firstrun== true) game.pushScene(endScene);
-	firstrun =true;
+	if(counter == 5){
+		firstrun =true;
+		counter = 0;
+	}
+	counter++;
 }
 function gameOverboth(endScene,game){
 	var label2 = new Label();
@@ -48,12 +59,17 @@ function gameOverboth(endScene,game){
 	label2.y = game_y/2;
 	label2.x = game_x/2;
 	label2.addEventListener('enterframe', function(){
+		if(startgame == false){destroy(this);}
 		this.text = "GAME OVER!! ";
 	});
 	endScene.addChild(label2);
 
 	if(firstrun== true) game.pushScene(endScene);
-	firstrun =true;
+	if(counter == 5){
+		firstrun =true;
+		counter = 0;
+	}
+	counter++;
 }
 function fire(player,cannon,enemies) {
     if (player.fireCooldown <= 0 && player.resources != 0) {
@@ -89,7 +105,10 @@ function destroyBullet (bulletIndex) {
 	// console.log("Bullets length is: " + bullets.length);
 	// console.log("Removing bullet " + bulletIndex + " from bullets.");
 	bullets.splice(bulletIndex, 1);
-	bullet.clearEventListener("enterframe");
-	game.currentScene.removeChild(bullet);
+	if(typeof bullet !== 'undefined')
+	{
+		bullet.clearEventListener("enterframe");
+		game.currentScene.removeChild(bullet);
+	}
 	// console.log("bullets length is now " + bullets.length);
 }
