@@ -17,11 +17,12 @@ function player1died(endScene, game)
 	label2.y = p2locatioyw;
 	label2.x = p2locatioxw;
 	label2.addEventListener('enterframe', function(){
-		if(startgame == false){destroy(this);}
+		var curstate = startgame;
+		if(startgame != curstate){destroy(this);}
 		this.text = "Player 2 has won the game";
 	});
 	endScene.addChild(label2);
-	if(firstrun== true) game.pushScene(endScene);
+	if(firstrun == true) game.pushScene(endScene);
 	if(counter == 5){
 		firstrun =true;
 		counter = 0;
@@ -37,8 +38,9 @@ function player2died(endScene, game){
 	label2.color = 'rgb(0, 0, 0)';
 	label2.y = p1locatioyw;
 	label2.x = p1locatioxw;
+	var curstate = startgame;
 	label2.addEventListener('enterframe', function(){
-		if(startgame == false){destroy(this);}
+		if(startgame != curstate){destroy(this);}
 		this.text = "Player 1 has won the game ";
 	});
 	endScene.addChild(label2);
@@ -59,7 +61,8 @@ function gameOverboth(endScene,game){
 	label2.y = game_y/2;
 	label2.x = game_x/2;
 	label2.addEventListener('enterframe', function(){
-		if(startgame == false){destroy(this);}
+		var curstate = startgame;
+		if(startgame != curstate){destroy(this);}
 		this.text = "GAME OVER!! ";
 	});
 	endScene.addChild(label2);

@@ -11,7 +11,7 @@ var ufoActive = false;
 ufoSpawnTime = 60 * (rand(20) + 10);
 var firstrun = false;
 var gameover = false;
-var startgame = true;
+var startgame = 0;
 function initWorld() {
 	var endScene = new Scene();
 	var startScene = new Scene();
@@ -31,7 +31,7 @@ function initWorld() {
 		ufotimer = 0;
 		firstrun = false;
 		gameover = false;
-		stargame = false;
+		startgame += 1;
 		game.pushScene(startScene);
 	});
 	startScene.addChild(bgstart);
@@ -121,14 +121,12 @@ function creatertxt(player, pl,scene) {
 	if (player == 1) {
 		rt.x = rt_x_p1;
 		rt.addEventListener('enterframe', function(){
-			if(startgame == false){destroy(this);}
 			this.text = "Player 1 Resources " + pl.resources;
 		});
 	}
 	else {
 		rt.x = rt_x_p2;
 		rt.addEventListener('enterframe', function(){
-			if(startgame == false){destroy(this);}
 			this.text = "Player 2 Resources " + pl.resources;
 		});
 	}
