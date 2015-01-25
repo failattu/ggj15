@@ -96,15 +96,15 @@ function initWorld() {
 		}
 	});
 
-	creatertxt(1, p1);
-	creatertxt(2, p2);
+	creatertxt(1, p1,gameScene);
+	creatertxt(2, p2,gameScene);
 }
 function makeBackground(image) {
 	var bg = new Sprite(game_x, game_y);
 	bg.image = image;
 	return bg;
 }
-function creatertxt(player, pl) {
+function creatertxt(player, pl,scene) {
 	var rt = new Label();
 	rt.width = rt_w;
 	rt.height = rt_h;
@@ -123,5 +123,5 @@ function creatertxt(player, pl) {
 			this.text = "Player 2 Resources " + pl.resources;
 		});
 	}
-	game.currentScene.addChild(rt);
+	scene.addChild(rt);
 }
