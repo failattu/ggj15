@@ -1,5 +1,6 @@
 function Player(id) {
 	this.id = id;
+	this.cannon = new Sprite(cannon_x, cannon_y);
 	this.fireCooldown = 0;
 	this.resources = 30;
 	this.hp = 1;

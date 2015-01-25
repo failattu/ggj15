@@ -38,21 +38,21 @@ function initWorld() {
 	endScene.addChild(bgend);
 	var p1 = new Player(1);
 	var p2 = new Player(2);
-  var p1_cannon = new Sprite(cannon_x,cannon_y);
-	var p2_cannon = new Sprite(cannon_x,cannon_y);
-	p1_cannon.image = game.assets['assets/cannon.png'];
-	p2_cannon.image = game.assets['assets/cannon_p2.png'];
+    p1.cannon = new Sprite(cannon_x,cannon_y);
+	p2.cannon = new Sprite(cannon_x,cannon_y);
+	p1.cannon.image = game.assets['assets/cannon.png'];
+	p2.cannon.image = game.assets['assets/cannon_p2.png'];
 	var bg = makeBackground(game.assets['assets/bg.png'])
 	gameScene.addChild(bg);
 
-	p1_cannon.x = game_x * 0.25;
-	p1_cannon.y = game_y - ground_y*1.15;
-	p2_cannon.x = game_x * 0.75;
-	p2_cannon.y = game_y - ground_y*1.15;
+	p1.cannon.x = game_x * 0.25;
+	p1.cannon.y = game_y - groundArt_y*1.15;
+	p2.cannon.x = game_x * 0.75;
+	p2.cannon.y = game_y - groundArt_y*1.15;
 
-	gameScene.addChild(p1_cannon);
-	gameScene.addChild(p2_cannon);
-  	p1_cannon.addEventListener("enterframe", function(){
+	gameScene.addChild(p1.cannon);
+	gameScene.addChild(p2.cannon);
+  	p1.cannon.addEventListener("enterframe", function(){
     	if(p1.resources > 0) {
 			if (game.input.lefta && !game.input.rightd) {
 				if (this.x >= 0) this.x -= 5;
@@ -66,7 +66,7 @@ function initWorld() {
 		}
   	});
 
-	p2_cannon.addEventListener("enterframe", function(){
+	p2.cannon.addEventListener("enterframe", function(){
 		if(p2.resources > 0) {
 			if (game.input.left && !game.input.right) {
 				if (this.x >= game_x * 0.5) this.x -= 5;
@@ -80,26 +80,31 @@ function initWorld() {
 		}
 	});
 	var ground = new Sprite(game_x, ground_y);
-	ground.image = game.assets['assets/ground.png'];
+	// ground.image = game.assets['assets/ground.png'];
 
 	ground.x = 0;
 	ground.y = game_y - ground_y;
 	gameScene.addChild(ground);
+	var groundArt = new Sprite(game_x, groundArt_y);
+	groundArt.x = 0;
+	groundArt.y = game_y - groundArt_y;
+	groundArt.image = game.assets['assets/ground.png'];
+	gameScene.addChild(groundArt);
 	gameScene.addEventListener("enterframe", function() {
 		if(gameover == true){
 			gameOverboth(endScene,game);
 			}
 		if (game.input.upw) {
-			fire(p1, p1_cannon);
+			fire(p1, p1.cannon);
 		}
 		p1.fireCooldown -= 1;
 		if(game.input.up){
-			fire(p2, p2_cannon);
+			fire(p2, p2.cannon);
 		}
 		p2.fireCooldown -=1;
 		if(ufoActive == false) ufotimer += 1
 		if(game.currentScene.age % 120 == 0) {
-			addEnemy(ground,p1,p2);
+			addEnemy(ground, p1, p2, groundArt);
 		}
 		console.log("ufotimer: " + ufotimer);
 		console.log("ufospawntime: " + ufoSpawnTime);

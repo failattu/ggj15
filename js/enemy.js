@@ -1,5 +1,5 @@
 var ufotimer = 0.0;
-function addEnemy(ground,p1,p2) {
+function addEnemy(ground, p1, p2, groundArt) {
 	if (ufoActive) {
 
 	}
@@ -9,7 +9,7 @@ function addEnemy(ground,p1,p2) {
 		ufotimer = 0;
 	}
 	else {
-		addSmallEnemy(ground,p1,p2);
+		addSmallEnemy(ground, p1, p2, groundArt);
 	}
 }
 
