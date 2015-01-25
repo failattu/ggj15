@@ -17,13 +17,13 @@ function initWorld() {
 	var startScene = new Scene();
 	var gameScene = new Scene();
 	game.pushScene(startScene);
-	var bgstart = makeBackground(game.assets['assets/bground.png'])
+	var bgstart = makeBackground(game.assets['assets/bg.png'])
 	bgstart.addEventListener('touchstart', function(){
 		console.log("touchstarted")
 		stargame = true;
 		game.pushScene(gameScene);
 	});
-	var bgend = makeBackground(game.assets['assets/bground.png'])
+	var bgend = makeBackground(game.assets['assets/bg.png'])
 	bgend.addEventListener('touchstart', function(){
 		console.log("touchstarted")
 		p1.resources = 30;
@@ -42,13 +42,13 @@ function initWorld() {
 	var p2_cannon = new Sprite(cannon_x,cannon_y);
 	p1_cannon.image = game.assets['assets/cannon.png'];
 	p2_cannon.image = game.assets['assets/cannon_p2.png'];
-	var bg = makeBackground(game.assets['assets/bground.png'])
+	var bg = makeBackground(game.assets['assets/bg.png'])
 	gameScene.addChild(bg);
 
 	p1_cannon.x = game_x * 0.25;
-	p1_cannon.y = game_y - ground_y*2;
+	p1_cannon.y = game_y - ground_y*1.15;
 	p2_cannon.x = game_x * 0.75;
-	p2_cannon.y = game_y - ground_y*2;
+	p2_cannon.y = game_y - ground_y*1.15;
 
 	gameScene.addChild(p1_cannon);
 	gameScene.addChild(p2_cannon);
@@ -80,7 +80,7 @@ function initWorld() {
 		}
 	});
 	var ground = new Sprite(game_x, ground_y);
-	// ground.image = game.assets['assets/ground.png'];
+	ground.image = game.assets['assets/ground.png'];
 
 	ground.x = 0;
 	ground.y = game_y - ground_y;

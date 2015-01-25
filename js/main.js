@@ -7,7 +7,8 @@ game.keybind(87, 'upw');
 game.keybind(83, 'downs');
 game.preload('assets/chara1.png', 
 			'assets/ground.png', 
-			'assets/bground.png', 
+			'assets/bg.png',
+			'assets/ground.png',
 			'assets/cannon.png',
 			'assets/cannon_p2.png', 
 			'assets/bullet.png',
