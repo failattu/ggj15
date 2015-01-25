@@ -5,15 +5,12 @@ var ground_y = 50;
 var cannon_x = 48;
 var cannon_y = 50;
 
-var p1textwidth = 256;
-var p1textheight = 64;
-var p1locatioy = 40;
-var p1locatiox = 50;
-
-var p2textwidth = 256;
-var p2textheight = 64;
-var p2locatioy = 40;
-var p2locatiox = 600;
+// player resource indicators
+var rt_w = 130;
+var rt_h = 64;
+var rt_y = game_y - game_y * 0.04;
+var rt_x_p1 = game_x * 0.25 - rt_w * 0.5;
+var rt_x_p2 = game_x * 0.75 - rt_w * 0.5;
 
 
 var p1textwidthw = 400;
