@@ -1,10 +1,12 @@
+var ufotimer = 0.0;
 function addEnemy(ground,p1,p2) {
 	if (ufoActive) {
 
 	}
-	else if (game.currentScene.age % ufoSpawnTime == 0) {
+	else if (ufotimer % ufoSpawnTime == 0) {
 		addUfo(ground, p1, p2);
 		ufoActive = true;
+		ufotimer = 0;
 	}
 	else {
 		addSmallEnemy(ground,p1,p2);

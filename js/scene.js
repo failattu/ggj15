@@ -78,6 +78,7 @@ function initWorld() {
 			fire(p2, p2_cannon);
 		}
 		p2.fireCooldown -=1;
+		if(ufoActive == false) ufotimer += 1
 		if(game.currentScene.age % 120 == 0) {
 			addEnemy(ground,p1,p2);
 		}
