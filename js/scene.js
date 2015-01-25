@@ -68,7 +68,7 @@ function initWorld() {
 	gameScene.addChild(ground);
 	gameScene.addEventListener("enterframe", function() {
 		if(gameover == true){
-			gameOver(endScene,game);
+			gameOverboth(endScene,game);
 			}
 		if (game.input.upw) {
 			fire(p1, p1_cannon);
