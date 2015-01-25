@@ -11,11 +11,19 @@ var ufoActive = false;
 ufoSpawnTime = 60 * (rand(20) + 10);
 var firstrun = false;
 var gameover = false;
+
 function initWorld() {
 	var endScene = new Scene();
 	var startScene = new Scene();
 	var gameScene = new Scene();
-	game.pushScene(gameScene);
+	game.pushScene(startScene);
+	var bg = makeBackground(game.assets['assets/bground.png'])
+	bg.addEventListener('touchstart', function(){
+		console.log("touchstarted")
+		game.pushScene(gameScene);
+	});
+
+	startScene.addChild(bg);
 	var p1 = new Player(1);
 	var p2 = new Player(2);
   var p1_cannon = new Sprite(cannon_x,cannon_y);
@@ -82,7 +90,7 @@ function initWorld() {
 			addEnemy(ground,p1,p2);
 		}
 	});
-	
+
 	creatertxt(1, p1);
 	creatertxt(2, p2);
 }
@@ -108,7 +116,7 @@ function creatertxt(player, pl) {
 		rt.x = rt_x_p2;
 		rt.addEventListener('enterframe', function(){
 			this.text = "Player 2 Resources " + pl.resources;
-		});		
+		});
 	}
 	game.currentScene.addChild(rt);
 }
