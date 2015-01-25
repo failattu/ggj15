@@ -11,6 +11,10 @@ var ufoActive = false;
 ufoSpawnTime = 60 * (rand(20) + 10);
 
 function initWorld() {
+	var endScene = new Scene();
+	//game.pushScene(endScene);
+	var startScene = new Scene();
+	//game.pushScene(startScene);
 	var gameScene = new Scene();
 	game.pushScene(gameScene);
 	var p1 = new Player(1);
@@ -51,8 +55,8 @@ function initWorld() {
 			label2.addEventListener('enterframe', function(){
 				this.text = "Player 2 has won the game";
 			});
-			gameScene.addChild(label2);
-			if(firstrun== true) game.stop();
+			endScene.addChild(label2);
+			if(firstrun== true) game.pushScene(endScene);
 			firstrun =true;
 		}
   	});
@@ -80,7 +84,7 @@ function initWorld() {
 		});
 		gameScene.addChild(label2);
 
-		if(firstrun== true) game.stop();
+		if(firstrun== true) game.pushScene(endScene);
 		firstrun =true;
 		}
 	});
