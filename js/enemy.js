@@ -3,7 +3,7 @@ function addEnemy(ground,p1,p2) {
 	if (ufoActive) {
 
 	}
-	else if (ufotimer % ufoSpawnTime == 0) {
+	else if (ufotimer > ufoSpawnTime) {
 		addUfo(ground, p1, p2);
 		ufoActive = true;
 		ufotimer = 0;
