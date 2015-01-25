@@ -33,7 +33,7 @@ function initWorld() {
 	gameScene.addChild(p1_cannon);
 	gameScene.addChild(p2_cannon);
   	p1_cannon.addEventListener("enterframe", function(){
-    	if(p1.resources > 0){
+    	if(p1.resources > 0) {
 			if (game.input.lefta && !game.input.rightd) {
 				if (this.x >= 0) this.x -= 5;
 			}
@@ -47,17 +47,16 @@ function initWorld() {
   	});
 
 	p2_cannon.addEventListener("enterframe", function(){
-	if(p2.resources > 0)
-	{
-		if (game.input.left && !game.input.right) {
-			if (this.x >= game_x * 0.5) this.x -= 5;
+		if(p2.resources > 0) {
+			if (game.input.left && !game.input.right) {
+				if (this.x >= game_x * 0.5) this.x -= 5;
+			}
+			if (game.input.right && !game.input.left) {
+				if(this.x <= game_x - cannon_x)this.x += 5;
+			}
 		}
-		if (game.input.right && !game.input.left) {
-			if(this.x <= game_x - cannon_x)this.x += 5;
-		}
-	}
-	else{
-		player2died(endScene, game)
+		else {
+			player2died(endScene, game)
 		}
 	});
 	var ground = new Sprite(game_x, ground_y);
@@ -83,34 +82,33 @@ function initWorld() {
 			addEnemy(ground,p1,p2);
 		}
 	});
-	resources(gameScene,p2,p1);
+	
+	creatertxt(1, p1);
+	creatertxt(2, p2);
 }
 function makeBackground(image) {
 	var bg = new Sprite(game_x, game_y);
 	bg.image = image;
 	return bg;
 }
-function resources(gameScene,p2,p1){
-	var label2 = new Label();
-	label2.width = p1textwidth;
-	label2.height = p1textheight;
-	label2.font = "12px 'Arial'";
-	label2.color = 'rgb(0, 0, 0)';
-	label2.y = p1locatioy;
-	label2.x = p1locatiox;
-	label2.addEventListener('enterframe', function(){
-		this.text = "Player 1 Resources " + p1.resources;
-	});
-	gameScene.addChild(label2);
-	var label2 = new Label();
-	label2.width = p2textwidth;
-	label2.height = p2textheight;
-	label2.font = "12px 'Arial'";
-	label2.color = 'rgb(0, 0, 0)';
-	label2.y = p2locatioy;
-	label2.x = p2locatiox;
-	label2.addEventListener('enterframe', function(){
-		this.text = "Player 2 Resources " + p2.resources;
-	});
-	gameScene.addChild(label2);
+function creatertxt(player, pl) {
+	var rt = new Label();
+	rt.width = rt_w;
+	rt.height = rt_h;
+	rt.font = "12px 'Exo 2'";
+	rt.color = 'rgb(0, 0, 0)';
+	rt.y = rt_y;
+	if (player == 1) {
+		rt.x = rt_x_p1;
+		rt.addEventListener('enterframe', function(){
+			this.text = "Player 1 Resources " + pl.resources;
+		});
+	}
+	else {
+		rt.x = rt_x_p2;
+		rt.addEventListener('enterframe', function(){
+			this.text = "Player 2 Resources " + pl.resources;
+		});		
+	}
+	game.currentScene.addChild(rt);
 }
