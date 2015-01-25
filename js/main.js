@@ -5,21 +5,22 @@ game.keybind(65, 'lefta');
 game.keybind(68, 'rightd');
 game.keybind(87, 'upw');
 game.keybind(83, 'downs');
-game.preload('assets/chara1.png', 
-			'assets/ground.png', 
+game.preload('assets/chara1.png',
+			'assets/ground.png',
 			'assets/bg.png',
 			'assets/ground.png',
 			'assets/cannon.png',
-			'assets/cannon_p2.png', 
+			'assets/cannon_p2.png',
 			'assets/bullet.png',
-			'assets/bullet_p2.png', 
-			'assets/collideground.wav', 
+			'assets/bullet_p2.png',
+			'assets/collideground.wav',
 			'assets/explode.wav',
 			'assets/hitenemy.wav',
 			'assets/scrap.png',
 			'assets/enemy.png',
 			'assets/ufo.png',
-			'assets/explosion.png');
+			'assets/explosion.png',
+			'assets/startscreen.png');
 game.onload = function () {
 	initWorld();
 };
