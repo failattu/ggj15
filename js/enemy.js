@@ -110,7 +110,7 @@ function spawnScrap(startX, startY, ground, p1, p2) {
 	scrap.y = startY;
 	scrap.image = game.assets['assets/scrap.png'];
 	game.currentScene.addChild(scrap);
-	scrap.x_direction = rand(6) - 2;
+	scrap.x_direction = rand(10) - 5;
 	scrap.addEventListener('enterframe', function(e) {
 	    if(this.intersect(ground)) {
 			if(this.x < (game_x * 0.5)) {
