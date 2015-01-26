@@ -44,7 +44,7 @@ function addUfo (ground, p1, p2) {
 			    	// console.log("Removed bullet " + i + " from bullets (collide).");
 
 			    	if (this.hp <= 0) {
-				    	ufoDestruction(this);
+				    	ufoDestruction(this, ground, p1, p2);
 				    }
 				    else {
 				    	this.hp -= 1;
@@ -56,6 +56,9 @@ function addUfo (ground, p1, p2) {
 				    		this.x += 2;
 				    	}
 				    	this.y -= 2;
+				    	if (rand(10) < 4) {
+				    		spawnScrap(currentBullet.x, currentBullet.y, ground, p1, p2);
+				    	}
 				    }
 		   		}
 	        }
@@ -169,7 +172,7 @@ function explosionFx (x, y) {
 	game.currentScene.addChild(exp);
 }
 
-function ufoDestruction (ufo) {
+function ufoDestruction (ufo, ground, p1, p2) {
 	var dyingUfo = new Sprite(ufo.width, ufo.height);
 	dyingUfo.image = game.assets['assets/ufo.png'];
 	dyingUfo.x = ufo.x;
@@ -189,6 +192,9 @@ function ufoDestruction (ufo) {
 				expY = dyingUfo.y + rand(dyingUfo.height/2) + dyingUfo.height*0.25;
 				explosionFx(expX, expY);
 				game.assets['assets/hitenemy.wav'].play();
+				if (rand(10) < 4) {
+					spawnScrap(expX, expY, ground, p1, p2);
+				}
 			}
 		}	
 		else {
